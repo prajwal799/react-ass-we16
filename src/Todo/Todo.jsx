@@ -4,21 +4,24 @@ import TodoInput from "./TodoInput.jsx";
 import TodoList from "./TodoList.jsx";
 function Todo() {
   const [list, setList] = useState([]);
-
-  const handleSubmit = ({ title, description, status }) => {
+  const [state, setState] = useState(false);
+  const handleSubmit = ({ title, description }) => {
     const payload = {
       id: uuid(),
       title,
       description,
-      status
+      status: list.length % 2 === 0 ? true : false
     };
     setList([...list, payload]);
   };
-
   return (
     <div>
       <TodoInput onSubmit={handleSubmit} />
-      <TodoList data={list} />
+      <TodoList data={list.filter((item) => !item.status)} />
+      <div>
+        <button onClick={() => setState(!state)}>Show Completed</button>
+      </div>
+      {state && <TodoList data={list.filter((item) => item.status)} />}
     </div>
   );
 }

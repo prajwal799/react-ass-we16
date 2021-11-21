@@ -6,7 +6,7 @@ function TodoInput({ onSubmit }) {
   const [state, setState] = useState({
     title: "",
     description: "",
-    status: "false"
+    status: ""
   });
   const handleInputchange = (e) => {
     setState({
@@ -17,7 +17,7 @@ function TodoInput({ onSubmit }) {
   const add = () => {
     onSubmit(state);
   };
-  console.log(setState);
+
   return (
     <div>
       <h1>Todo</h1>

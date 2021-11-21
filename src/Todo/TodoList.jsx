@@ -4,7 +4,7 @@ function TodoList({ data }) {
     <ul>
       {data.map((item) => (
         <h1 key={item.id}>
-          {item.title} - {item.description} - {item.status}
+          {item.title} - {item.description} - {item.status ? "done" : "Pending"}
         </h1>
       ))}
     </ul>
