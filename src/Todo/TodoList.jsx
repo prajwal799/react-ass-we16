@@ -1,12 +1,18 @@
-function TodoList({ data }) {
-  console.log(data);
+function TodoList({
+  id,
+  title,
+  status,
+  description,
+  handleStatus,
+  deleteItem
+}) {
   return (
     <ul>
-      {data.map((item) => (
-        <h1 key={item.id}>
-          {item.title} - {item.description} - {item.status ? "done" : "Pending"}
-        </h1>
-      ))}
+      <li key={id}>
+        {title} - {description} - {status ? "Done" : "Not Done"}
+        <button onClick={() => handleStatus(id)}>Toggle</button>
+        <button onClick={() => deleteItem(id)}>Delete</button>
+      </li>
     </ul>
   );
 }

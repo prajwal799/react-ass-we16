@@ -46,6 +46,7 @@ function TodoInput({ onSubmit }) {
               title={item.title}
               description={item.description}
               status={item.status}
+              handleStatus={handleStatus}
             />
           );
         })}

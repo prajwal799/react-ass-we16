@@ -10,18 +10,40 @@ function Todo() {
       id: uuid(),
       title,
       description,
-      status: list.length % 2 === 0 ? true : false
+      status: false
     };
     setList([...list, payload]);
+  };
+  // Change Status
+  const handleStatus = (id) => {
+    const updatesStatus = list.map((item) =>
+      item.id === id ? { ...item, status: !item.status } : item
+    );
+    setList(updatesStatus);
+  };
+  // delete item in list
+  const deleteItem = (id) => {
+    setList(list.filter((item) => item.id != id));
   };
   return (
     <div>
       <TodoInput onSubmit={handleSubmit} />
-      <TodoList data={list.filter((item) => !item.status)} />
-      <div>
+      {list.map((item) => {
+        return (
+          <TodoList
+            id={item.id}
+            title={item.title}
+            description={item.description}
+            status={item.status}
+            handleStatus={handleStatus}
+            deleteItem={deleteItem}
+          />
+        );
+      })}
+      {/* <div>
         <button onClick={() => setState(!state)}>Show Completed</button>
       </div>
-      {state && <TodoList data={list.filter((item) => item.status)} />}
+      {state && <TodoList data={list.filter((item) => item.status)} />} */}
     </div>
   );
 }
